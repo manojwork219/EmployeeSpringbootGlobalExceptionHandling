@@ -11,7 +11,7 @@ import com.employeespringbootglobalexceptionhandling.demo.entity.Employee;
 import com.employeespringbootglobalexceptionhandling.demo.repository.EmployeeCRUDRepository;
 
 @Service
-public class EmployeeService implements EmployeeServiceInterface {
+public class EmployeeServiceImpl implements EmployeeServiceInterface {
 
 	@Autowired
 	EmployeeCRUDRepository employeeCRUDRepository;

@@ -18,13 +18,13 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-public class EmployeeServiceTest {
+public class EmployeeServiceImplTest {
 
     @Mock
     private EmployeeCRUDRepository employeeCRUDRepository;
 
     @InjectMocks
-    private EmployeeService employeeService;
+    private EmployeeServiceImpl employeeService;
 
     @BeforeEach
     void setUp() {
