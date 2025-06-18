@@ -40,7 +40,7 @@ public class EmployeeController {
 	}
 
 	@GetMapping("/emp/{empId}")
-	public ResponseEntity<?> getAllEmployee(@PathVariable("empId") Long empId) {
+	public ResponseEntity<?> getEmployeeById(@PathVariable("empId") Long empId) {
 
 		Employee employee = employeeServiceInterface.getEmployeeById(empId);
 		return new ResponseEntity<>(employee, HttpStatus.OK);
@@ -48,7 +48,7 @@ public class EmployeeController {
 	}
 
 	@DeleteMapping("/delete/emp/{empId}")
-	public ResponseEntity<?> deleteEmployee(@PathVariable("empId") Long empId) {
+	public ResponseEntity<?> deleteEmployeeById(@PathVariable("empId") Long empId) {
 
 		employeeServiceInterface.deleteEmployeeById(empId);
 		return new ResponseEntity<String>("Employee Deleted with Id: "+empId,HttpStatus.ACCEPTED);

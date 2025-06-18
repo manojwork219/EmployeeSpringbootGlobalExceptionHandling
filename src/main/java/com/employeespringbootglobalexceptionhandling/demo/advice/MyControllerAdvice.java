@@ -5,6 +5,7 @@ import java.util.NoSuchElementException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -35,8 +36,13 @@ public class MyControllerAdvice extends ResponseEntityExceptionHandler {
 	}
 	
 	@Override
-	protected ResponseEntity<Object> handleHttpRequestMethodNotSupported(HttpRequestMethodNotSupportedException ex,
-			HttpHeaders headers, HttpStatus status, WebRequest request) {
-		return new ResponseEntity<Object>("Please change your HTTP method Type", HttpStatus.METHOD_NOT_ALLOWED);
+	protected ResponseEntity<Object> handleHttpRequestMethodNotSupported(
+	        HttpRequestMethodNotSupportedException ex,
+	        HttpHeaders headers,
+	        HttpStatusCode status,    // ✅ Use this instead of HttpStatus
+	        WebRequest request) {
+
+	    return new ResponseEntity<>("Please change your HTTP method Type", HttpStatus.METHOD_NOT_ALLOWED);
 	}
+
 }
