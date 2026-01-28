@@ -10,8 +10,10 @@ public interface EmployeeServiceInterface {
 
 	List<Employee> getAllEmployee();
 
+	List<Employee> getEmployeeByList(List<Long> empIdsList);
+	
 	Employee getEmployeeById(Long empId);
 
 	void deleteEmployeeById(Long empId);
-
+	
 }

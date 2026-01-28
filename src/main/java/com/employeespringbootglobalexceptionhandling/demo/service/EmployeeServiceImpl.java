@@ -37,6 +37,17 @@ public class EmployeeServiceImpl implements EmployeeServiceInterface {
 
 		return employeeList;
 	}
+	
+	@Override
+	public List<Employee> getEmployeeByList(List<Long> empIdsList) {
+		List<Employee> employeeList = null;
+		employeeList = employeeCRUDRepository.findEmployeeByIdIn(empIdsList);
+		
+		if (employeeList.isEmpty())
+			throw new BusinessException("604", "No Employee Exists, List is empty...");
+
+		return employeeList;
+	}
 
 	@Override
 	public Employee getEmployeeById(Long empId) {
@@ -53,6 +64,8 @@ public class EmployeeServiceImpl implements EmployeeServiceInterface {
 					"Employee is Null, please send an Employee id to be deleted " + e.getMessage());
 		}
 	}
+
+	
 	
 	
 

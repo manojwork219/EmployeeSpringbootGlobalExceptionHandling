@@ -13,13 +13,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.employeespringbootglobalexceptionhandling.demo.entity.Employee;
 import com.employeespringbootglobalexceptionhandling.demo.service.EmployeeServiceInterface;
 
 @RestController
-@RequestMapping("/code")
+@RequestMapping("/Employee")
 public class EmployeeController {
 
 	@Autowired
@@ -38,7 +39,13 @@ public class EmployeeController {
 		List<Employee> listOfEmployee = employeeServiceInterface.getAllEmployee();
 		return new ResponseEntity<>(listOfEmployee, HttpStatus.OK);
 	}
-
+	
+	@GetMapping("/getEmployeeByList")
+	public ResponseEntity<?> getEmployeeByList(@RequestParam List<Long> empIdsList) {
+		List<Employee> employeeList = employeeServiceInterface.getEmployeeByList(empIdsList);
+		return new ResponseEntity<>(employeeList, HttpStatus.OK);
+	}
+	
 	@GetMapping("/emp/{empId}")
 	public ResponseEntity<?> getEmployeeById(@PathVariable("empId") Long empId) {
 
