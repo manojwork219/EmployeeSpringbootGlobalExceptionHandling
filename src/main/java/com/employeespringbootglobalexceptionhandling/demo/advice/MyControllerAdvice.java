@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import com.employeespringbootglobalexceptionhandling.demo.custom.exception.BusinessException;
 import com.employeespringbootglobalexceptionhandling.demo.custom.exception.EmptyInputException;
 
 @ControllerAdvice
@@ -21,6 +22,11 @@ public class MyControllerAdvice extends ResponseEntityExceptionHandler {
 	@ExceptionHandler(EmptyInputException.class)
 	public ResponseEntity<String> handleEmptyInput(EmptyInputException emptyInputException) {
 		return new ResponseEntity<String>("Input Field is Empty, please look into it ", HttpStatus.BAD_REQUEST);
+	}
+
+	@ExceptionHandler(BusinessException.class)
+	public ResponseEntity<String> handleBusinessException(BusinessException businessException) {
+		return new ResponseEntity<String>(businessException.getErrorMessage(), HttpStatus.NOT_FOUND);
 	}
 
 	@ExceptionHandler(NoSuchElementException.class)

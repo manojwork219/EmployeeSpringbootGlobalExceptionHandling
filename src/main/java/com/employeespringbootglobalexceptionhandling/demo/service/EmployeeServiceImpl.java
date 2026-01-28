@@ -58,6 +58,9 @@ public class EmployeeServiceImpl implements EmployeeServiceInterface {
 	public void deleteEmployeeById(Long empId) {
 
 		try {
+			if (!employeeCRUDRepository.existsById(empId)) {
+				throw new BusinessException("609", "Employee not found with Id: " + empId);
+			}
 			employeeCRUDRepository.deleteById(empId);
 		} catch (IllegalArgumentException e) {
 			throw new BusinessException("608",

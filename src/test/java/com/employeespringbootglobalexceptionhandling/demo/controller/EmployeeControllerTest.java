@@ -46,7 +46,7 @@ public class EmployeeControllerTest {
 
 		when(employeeServiceInterface.addEmployee(any(Employee.class))).thenReturn(mockEmployee);
 
-		mockMvc.perform(post("/code/save").contentType(MediaType.APPLICATION_JSON)
+		mockMvc.perform(post("/Employee/save").contentType(MediaType.APPLICATION_JSON)
 				.content(objectMapper.writeValueAsString(mockEmployee))).andExpect(status().isCreated())
 				.andExpect(jsonPath("$.id").value(1L)).andExpect(jsonPath("$.name").value("John"));
 	}
@@ -65,7 +65,7 @@ public class EmployeeControllerTest {
 
 		when(employeeServiceInterface.getAllEmployee()).thenReturn(employeeList);
 
-		mockMvc.perform(get("/code/all")).andExpect(status().isOk()).andExpect(jsonPath("$.length()").value(2));
+		mockMvc.perform(get("/Employee/all")).andExpect(status().isOk()).andExpect(jsonPath("$.length()").value(2));
 	}
 
 	@Test
@@ -76,14 +76,14 @@ public class EmployeeControllerTest {
 
 		when(employeeServiceInterface.getEmployeeById(1L)).thenReturn(mockEmployee);
 
-		mockMvc.perform(get("/code/emp/1")).andExpect(status().isOk()).andExpect(jsonPath("$.name").value("John"));
+		mockMvc.perform(get("/Employee/emp/1")).andExpect(status().isOk()).andExpect(jsonPath("$.name").value("John"));
 	}
 
 	@Test
 	void testDeleteEmployeeById() throws Exception {
 		doNothing().when(employeeServiceInterface).deleteEmployeeById(1L);
 
-		mockMvc.perform(delete("/code/delete/emp/1")).andExpect(status().isAccepted())
+		mockMvc.perform(delete("/Employee/delete/emp/1")).andExpect(status().isAccepted())
 				.andExpect(content().string("Employee Deleted with Id: 1"));
 	}
 
@@ -95,7 +95,7 @@ public class EmployeeControllerTest {
 
 		when(employeeServiceInterface.addEmployee(any(Employee.class))).thenReturn(mockEmployee);
 
-		mockMvc.perform(put("/code/update").contentType(MediaType.APPLICATION_JSON)
+		mockMvc.perform(put("/Employee/update").contentType(MediaType.APPLICATION_JSON)
 				.content(objectMapper.writeValueAsString(mockEmployee))).andExpect(status().isCreated())
 				.andExpect(jsonPath("$.name").value("John Updated"));
 	}
